@@ -1,0 +1,16 @@
+.centralizer {
+    display: flex;
+    justify-content: center;
+}
+.width {
+    width: 35%;
+}
+.padding {
+    padding-left: 5rem;
+}
+.padding-tbody {
+    padding-top: 2rem;
+}
+.min-table {
+    min-width: 5rem;    
+}
