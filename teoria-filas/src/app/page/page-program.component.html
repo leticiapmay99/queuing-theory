@@ -3,152 +3,163 @@
 <div class="centralizer">
 
     <form [formGroup]="form1" (ngSubmit)="sendData()">
+        <div class="flex">
+
+            <mat-form-field class="width ">
+                <mat-label>Tempo a ser simulado (minutos)</mat-label>
+                <input matInput  type="number" formControlName="time">
+            </mat-form-field>
+            <mat-form-field class="width">
+                <mat-label>Probabilidade de Cliente(MAX)</mat-label>
+                <input matInput  type="number" formControlName="max">
+            </mat-form-field>
+
+        </div>
+        <mat-card>
+
+            <table  class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" class="padding">A</th>
+                        <th scope="col" class="padding">B</th>
+                        <th scope="col"  class="padding">C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr >
+                    <th scope="row" class="padding-tbody">Chegadas (λ)</th>
+                    <td scope="col">
+                        <mat-form-field class="margin">
+                            <input matInput  type="number" formControlName="AarrivalrateMin">
+                        </mat-form-field>        
+                    </td>
+                    <td scope="col">
+                        <mat-form-field class="margin">
+                            <input matInput  type="number" formControlName="BarrivalrateMin">
+                        </mat-form-field>
+                    </td>
+                    <td scope="col">
+                        <mat-form-field class="margin">
+                            <input matInput  type="number" formControlName="CarrivalrateMin">
+                        </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr >
+                    <th scope="row" class="padding-tbody">Serviços (μ)</th>
+                    <td>
+                        <mat-form-field class="margin">
+                            <input matInput  type="number" formControlName="AserviceMin">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="margin">
+                            <input matInput  type="number" formControlName="BserviceMin">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="margin">
+                            <input matInput  type="number" formControlName="CserviceMin">
+                        </mat-form-field>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </mat-card>
+        <button style="margin-bottom: 2rem;"  mat-raised-button color="primary"> Simular</button>
+
+        <mat-card>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" class="min-table">A</th>
+                        <th scope="col" class="min-table">B</th>
+                        <th scope="col" class="min-table">C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <th scope="row" >Chegadas (λ)</th>
+                        <td class="min-table">{{Aarrivalrate}}</td>
+                        <td class="min-table">{{Barrivalrate}}</td>
+                        <td class="min-table">{{Carrivalrate}}</td>
+                    </tr>
+                    <tr >
+                        <th scope="row">Serviços (μ)</th>
+                        <td class="min-table">{{Aservice}}</td>
+                        <td class="min-table">{{Bservice}}</td>
+                        <td class="min-table">{{Cservice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card>
+        <mat-card>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" class="min-table">A</th>
+                        <th scope="col" class="min-table">B</th>
+                        <th scope="col" class="min-table">C</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"  matTooltip="L = λ/(μ - λ)">Número Médio de Carros no Sistema (L)</th>
+                            <td class="min-table">{{averageAL}}</td>
+                            <td class="min-table">{{averageBL}}</td>
+                            <td class="min-table">{{averageCL}}</td>
+                        </tr>
+                    <tr>
+                    <tr>
+                        <th scope="row"  matTooltip="W = 1/(μ - λ)">Tempo Médio Despendido no Sistema (W)</th>
+                            <td class="min-table">{{averageAW}}</td>
+                            <td class="min-table">{{averageBW}}</td>
+                            <td class="min-table">{{averageCW}}</td>
+                        </tr>
+                    <tr>
     
-        <mat-form-field class="width">
-            <mat-label>Tempo a ser simulado (minutos)</mat-label>
-            <input matInput  type="number" formControlName="time">
-        </mat-form-field>
-
-        <table  class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" class="padding">A</th>
-                    <th scope="col" class="padding">B</th>
-                    <th scope="col"  class="padding">C</th>
-                </tr>
-            </thead>
-            <tbody>
-              <tr >
-                <th scope="row" class="padding-tbody">Chegadas</th>
-                <td scope="col">
-                    <mat-form-field class="margin">
-                        <input matInput  type="number" formControlName="AarrivalrateMin">
-                    </mat-form-field>        
-                </td>
-                <td scope="col">
-                    <mat-form-field class="margin">
-                        <input matInput  type="number" formControlName="BarrivalrateMin">
-                    </mat-form-field>
-                </td>
-                <td scope="col">
-                    <mat-form-field class="margin">
-                        <input matInput  type="number" formControlName="CarrivalrateMin">
-                    </mat-form-field>
-                </td>
-              </tr>
-              <tr >
-                <th scope="row" class="padding-tbody">Serviços</th>
-                <td>
-                    <mat-form-field class="margin">
-                        <input matInput  type="number" formControlName="AserviceMin">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="margin">
-                        <input matInput  type="number" formControlName="BserviceMin">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field class="margin">
-                        <input matInput  type="number" formControlName="CserviceMin">
-                    </mat-form-field>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" class="min-table">A</th>
-                    <th scope="col" class="min-table">B</th>
-                    <th scope="col" class="min-table">C</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr >
-                    <th scope="row">Chegadas</th>
-                    <td class="min-table">{{Aarrivalrate}}</td>
-                    <td class="min-table">{{Barrivalrate}}</td>
-                    <td class="min-table">{{Carrivalrate}}</td>
-                </tr>
-                <tr >
-                    <th scope="row">Serviços</th>
-                    <td class="min-table">{{Aservice}}</td>
-                    <td class="min-table">{{Bservice}}</td>
-                    <td class="min-table">{{Cservice}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" class="min-table">A</th>
-                    <th scope="col" class="min-table">B</th>
-                    <th scope="col" class="min-table">C</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Número Médio de Carros no Sistema (L) λ</th>
-                        <td class="min-table">{{averageAL}}</td>
-                        <td class="min-table">{{averageBL}}</td>
-                        <td class="min-table">{{averageCL}}</td>
-                    </tr>
-                <tr>
-                <tr>
-                    <th scope="row">Tempo Médio Despendido no Sistema (W)</th>
-                        <td class="min-table">{{averageAW}}</td>
-                        <td class="min-table">{{averageBW}}</td>
-                        <td class="min-table">{{averageCW}}</td>
-                    </tr>
-                <tr>
-
-                <tr>
-                    <th scope="row">Taxa média de ocupação do servidor(p)</th>
-                        <td class="min-table">{{averageAP}}</td>
-                        <td class="min-table">{{averageBP}}</td>
-                        <td class="min-table">{{averageCP}}</td>
-                    </tr>
-                <tr>
-            </tbody>
-        </table>
-
-        <mat-form-field class="width">
-            <mat-label>Probabilidade de Cliente(MAX)</mat-label>
-            <input matInput  type="number" formControlName="max">
-        </mat-form-field>
-
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col" class="min-table">N</th>
-                    <th scope="col" class="min-table">P(X)</th>
-                    <th scope="col" class="min-table">Cenário A</th>
-                    <th scope="col" class="min-table">Cenário B</th>
-                    <th scope="col" class="min-table">Cenário C</th>
-                </tr>
-            </thead>
+                    <tr>
+                        <th scope="row"  matTooltip="p = λ/μ " >Taxa média de ocupação do servidor(p)</th>
+                            <td class="min-table">{{averageAP}}</td>
+                            <td class="min-table">{{averageBP}}</td>
+                            <td class="min-table">{{averageCP}}</td>
+                        </tr>
+                    <tr>
+                </tbody>
+            </table>
             
-            <tbody  *ngFor="let item of maxTable; let i = index">
-                <p>{{i}}{{item.sceneryA}}</p>
-                <tr>
-                    <th scope="row">{{item.item}}</th>
-                        <td class="min-table">P({{item.item}})</td>
-                        <td class="min-table">{{item.sceneryA}}</td>
-                        <td class="min-table">{{sceneryB}}</td>
-                        <td class="min-table">{{sceneryC}}</td>
-                    </tr>
-                <tr>
-            </tbody>
-        </table>
-        <button mat-raised-button color="primary"> Converter</button>
-    </form>
+       
+        </mat-card>
 
+        <mat-card>
+            <table class="table"  >
+                <thead matTooltip="Pn =(1-(λ/μ))*(λ/μ)^n"> 
+                    <tr>
+                        <th scope="col" class="min-table">N</th>
+                        <th scope="col" class="min-table">P(X)</th>
+                        <th scope="col" class="min-table">Cenário A</th>
+                        <th scope="col" class="min-table">Cenário B</th>
+                        <th scope="col" class="min-table">Cenário C</th>
+                    </tr>
+                </thead>
+                
+                <tbody  *ngFor="let item of maxTable;">
+                    <tr>
+                        <th scope="row">{{item.id}}</th>
+                            <td class="min-table">P({{item.id}})</td>
+                            <td class="min-table">{{item.sceneryA}}</td>
+                            <td class="min-table">{{item.sceneryB}}</td>
+                            <td class="min-table">{{item.sceneryC}}</td>
+                        </tr>
+                    <tr>
+                </tbody>
+            </table>
+        </mat-card>
+
+    </form>
 </div>   
+<p>Letícia May 2021</p>
