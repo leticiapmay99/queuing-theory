@@ -6,6 +6,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { element } from 'protractor';
 
 
 @Component({
@@ -39,6 +40,17 @@ export class PageProgram  implements OnInit {
     averageAP: any
     averageBP: any
     averageCP: any
+    maxTable = {
+        item: [],
+        sceneryA: [],
+        sceneryB: [],
+        sceneryC: []
+    } as any
+
+    testArr =  [] as object
+    sceneryA: any
+    sceneryB: any
+    sceneryC: any
 
     ngOnInit(): void {
         this.formCreation();
@@ -52,6 +64,7 @@ export class PageProgram  implements OnInit {
             AserviceMin: [''],
             BserviceMin: [''],
             CserviceMin: [''],
+            max:['']
         });
 
     }
@@ -83,5 +96,28 @@ export class PageProgram  implements OnInit {
         this.averageAP = (this.Aarrivalrate / this.Aservice).toFixed(2)
         this.averageBP = (this.Barrivalrate / this.Bservice).toFixed(2)
         this.averageCP = (this.Carrivalrate / this.Cservice).toFixed(2)
+        let max = parseInt(this.form1.get('max')?.value)
+        let teste
+        for(var i=0; i < max; i++) {
+            this.maxTable[0].item.push(i)
+            console.log(this.maxTable);
+        }
+        console.log(this.maxTable);
+        this.maxTable[0].item.forEach((element:any) => {
+          
+            // this.sceneryB = 0
+            // this.sceneryC= 0
+
+            this.maxTable[0].sceneryA.push((1-(this.Aarrivalrate/this.Aservice)*Math.pow((this.Aarrivalrate/this.Aservice), element))) 
+            this.maxTable[0].sceneryB.push(1-(this.Barrivalrate/this.Bservice)*Math.pow((this.Barrivalrate/this.Bservice), element))
+            this.maxTable[0].sceneryC.push(1-(this.Carrivalrate/this.Cservice)*Math.pow((this.Carrivalrate/this.Cservice), element))
+            // this.sceneryA = (1-(this.Aarrivalrate/this.Aservice)*Math.pow((this.Aarrivalrate/this.Aservice), element))
+            // this.sceneryB = (1-(this.Barrivalrate/this.Bservice)*Math.pow((this.Barrivalrate/this.Bservice), element))
+            // this.sceneryC = (1-(this.Carrivalrate/this.Cservice)*Math.pow((this.Carrivalrate/this.Cservice), element))
+           
+        });
+
+
+
     }
 }

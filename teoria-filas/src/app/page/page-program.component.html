@@ -95,7 +95,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">Número Médio de Carros no Sistema (L)</th>
+                    <th scope="row">Número Médio de Carros no Sistema (L) λ</th>
                         <td class="min-table">{{averageAL}}</td>
                         <td class="min-table">{{averageBL}}</td>
                         <td class="min-table">{{averageCL}}</td>
@@ -119,9 +119,35 @@
             </tbody>
         </table>
 
+        <mat-form-field class="width">
+            <mat-label>Probabilidade de Cliente(MAX)</mat-label>
+            <input matInput  type="number" formControlName="max">
+        </mat-form-field>
 
 
-
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="min-table">N</th>
+                    <th scope="col" class="min-table">P(X)</th>
+                    <th scope="col" class="min-table">Cenário A</th>
+                    <th scope="col" class="min-table">Cenário B</th>
+                    <th scope="col" class="min-table">Cenário C</th>
+                </tr>
+            </thead>
+            
+            <tbody  *ngFor="let item of maxTable; let i = index">
+                <p>{{i}}{{item.sceneryA}}</p>
+                <tr>
+                    <th scope="row">{{item.item}}</th>
+                        <td class="min-table">P({{item.item}})</td>
+                        <td class="min-table">{{item.sceneryA}}</td>
+                        <td class="min-table">{{sceneryB}}</td>
+                        <td class="min-table">{{sceneryC}}</td>
+                    </tr>
+                <tr>
+            </tbody>
+        </table>
         <button mat-raised-button color="primary"> Converter</button>
     </form>
 
