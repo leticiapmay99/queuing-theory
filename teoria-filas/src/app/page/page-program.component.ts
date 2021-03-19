@@ -33,9 +33,9 @@ export class PageProgram  implements OnInit {
     averageAP: any
     averageBP: any
     averageCP: any
+    
     maxTable = [] as any
 
-    testArr =  [] as object
     sceneryA: any
     sceneryB: any
     sceneryC: any
@@ -58,19 +58,20 @@ export class PageProgram  implements OnInit {
     }
     sendData() {
         const TIME = this.form1.get('time')?.value
-        const Aarrivalrate = this.form1.get('AarrivalrateMin')?.value
-        const Barrivalrate = this.form1.get('BarrivalrateMin')?.value
-        const Carrivalrate = this.form1.get('CarrivalrateMin')?.value
-        const Aservice = this.form1.get('AserviceMin')?.value
-        const Bservice = this.form1.get('BserviceMin')?.value
-        const Cservice = this.form1.get('CserviceMin')?.value
+        const A_ARRIVAL_RATE = this.form1.get('AarrivalrateMin')?.value
+        const B_ARRIVAL_RATE = this.form1.get('BarrivalrateMin')?.value
+        const C_ARRIVAL_RATE = this.form1.get('CarrivalrateMin')?.value
+        const A_SERVICE = this.form1.get('AserviceMin')?.value
+        const B_SERVICE = this.form1.get('BserviceMin')?.value
+        const C_SERVICE = this.form1.get('CserviceMin')?.value
 
-        this.Aarrivalrate = (TIME/Aarrivalrate).toFixed(2)
-        this.Barrivalrate = (TIME/Barrivalrate).toFixed(2)
-        this.Carrivalrate = (TIME/Carrivalrate).toFixed(2)
-        this.Aservice = (TIME/Aservice).toFixed(2)
-        this.Bservice = (TIME/Bservice).toFixed(2)
-        this.Cservice = (TIME/Cservice).toFixed(2)
+        this.Aarrivalrate = (TIME/A_ARRIVAL_RATE).toFixed(2)
+        this.Barrivalrate = (TIME/B_ARRIVAL_RATE).toFixed(2)
+        this.Carrivalrate = (TIME/C_ARRIVAL_RATE).toFixed(2)
+        
+        this.Aservice = (TIME/A_SERVICE).toFixed(2)
+        this.Bservice = (TIME/B_SERVICE).toFixed(2)
+        this.Cservice = (TIME/C_SERVICE).toFixed(2)
         
 
         this.averageAL = (this.Aarrivalrate/(this.Aservice - this.Aarrivalrate)).toFixed(2)
@@ -84,16 +85,16 @@ export class PageProgram  implements OnInit {
         this.averageAP = (this.Aarrivalrate / this.Aservice).toFixed(2)
         this.averageBP = (this.Barrivalrate / this.Bservice).toFixed(2)
         this.averageCP = (this.Carrivalrate / this.Cservice).toFixed(2)
-        let max = parseInt(this.form1.get('max')?.value)
-        let teste
-        for(var i=0; i < max; i++) {
+       
+        const MAX = parseInt(this.form1.get('max')?.value)
+       
+        for(var i=0; i < MAX; i++) {
             this.maxTable.push({
                 id:  i,
                 sceneryA: ((1-(this.Aarrivalrate/this.Aservice))*Math.pow((this.Aarrivalrate/this.Aservice), i)).toFixed(2),
                 sceneryB: ((1-(this.Barrivalrate/this.Bservice))*Math.pow((this.Barrivalrate/this.Bservice), i)).toFixed(2),
                 sceneryC: ((1-(this.Carrivalrate/this.Cservice))*Math.pow((this.Carrivalrate/this.Cservice), i)).toFixed(2),
             })
-            console.log(this.maxTable);
         }
     }
 }
