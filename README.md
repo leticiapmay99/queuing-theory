@@ -1,5 +1,5 @@
 # Modelagem Analítica (Teoria das Filas)
-Exercício para a matéria de simulação, tem como ojetivo a simulação de problema de filas simples M/M/1,
+ Trabalho desenvolvido para a matérias de Simulação do Curso de Ciência da Computação da URI-Erechim tem como ojetivo a simulação de problema de filas simples M/M/1,
 
 ## Executando a aplicação
 
